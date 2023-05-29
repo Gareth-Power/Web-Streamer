@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .button {
+            display: block;
+            width: 200px;
+            height: 50px;
+            margin: 20px auto;
+            background-color: #ce2166;
+            color: white;
+            text-align: center;
+            border-radius: 10px;
+            line-height: 50px;
+            font-family: 'Arial', sans-serif;
+            font-size: 18px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        img {
+            width: 800px; /* Adjust as needed */
+        }
+    </style>
+</head>
+<body>
+    <img src="SaIL.PNG" alt="SaIL">
+    <div id="beginButton" class="button">Begin Stream</div>
+
+    <script>
+        document.getElementById('beginButton').addEventListener('click', function() {
+            // Generate a random 10 digit alphanumeric password
+            var password = Math.random().toString(36).slice(2, 12);
+
+            // Construct the iframe URL and QR code URL
+            var iframeUrl = 'https://vdo.ninja/?scene&room=' + password;
+            var qrUrl = 'https://vdo.ninja/?room=' + password + '&s=1&q&noheader&webcam&ag=1&chroma=FFFFFF';
+
+            // Redirect to the second page
+            window.location.href = 'viewer.html?iframeUrl=' + encodeURIComponent(iframeUrl) + '&qrUrl=' + encodeURIComponent(qrUrl);
+        });
+    </script>
+</body>
+</html>
