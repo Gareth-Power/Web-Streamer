@@ -44,7 +44,7 @@
 
             // Construct the iframe URL and QR code URL
             var iframeUrl = 'https://vdo.ninja/?scene&room=' + password;
-            var qrUrl = 'https://vdo.ninja/?room=' + password + '&s=1&q&noheader&webcam&ag=1&chroma=FFFFFF';
+            var qrUrl = 'https://vdo.ninja/?room=' + password + '&q&noheader&webcam&ag=1&chroma=FFFFFF';
 
             // Redirect to the second page
             window.location.href = 'viewer.html?iframeUrl=' + encodeURIComponent(iframeUrl) + '&qrUrl=' + encodeURIComponent(qrUrl);
