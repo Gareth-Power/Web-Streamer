@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #myIframe {
+            width: 60%;
+            height: 60%;
+        }
+
+        .button {
+            display: block;
+            width: 200px;
+            height: 50px;
+            margin: 20px auto;
+            background-color: #cc164a;
+            color: white;
+            text-align: center;
+            line-height: 50px;
+            font-family: 'Arial', sans-serif;
+            font-size: 18px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #mobileError {
+            display: none;
+            font-size: 24px;
+            color: rgb(208, 22, 94);
+        }
+
+        img {
+            width: 180px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        #controlRoomLink {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            font-size: 14px;
+            text-decoration: none;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+   
+    <iframe id="myIframe"></iframe>
+    <div id="toggleButton" class="button">Toggle Full Screen</div>
+    <div id="mobileError">Mobile browser not supported, please open viewer on a computer.</div>
+    <a id="qrLink" href="" target="_blank">
+        <img id="qrCode" src="">
+    </a>
+    <a id="controlRoomLink"><strong>Control Room:</strong> </a>
+
+  <script>
+    // Parse the URL parameters
+    var urlParams = new URLSearchParams(window.location.search);
+
+    // Get the iframe URL and QR code URL
+    var iframeUrl = urlParams.get('iframeUrl');
+    var qrUrl = urlParams.get('qrUrl');
+    var controlroom = urlParams.get('controlroom');
+
+    // Set the iframe URL and QR code URL
+    document.getElementById('myIframe').src = iframeUrl;
+    document.getElementById('qrCode').src = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=' + encodeURIComponent(qrUrl);
+    document.getElementById('qrLink').href = qrUrl;
+    document.getElementById('controlRoomLink').innerHTML += '<span>' + controlroom + '</span>';
+
+    // Check for mobile device
+    if (/Mobi|Android/i.test(navigator.userAgent)) {
+        document.getElementById('myIframe').style.display = 'none';
+        document.getElementById('toggleButton').style.display = 'none';
+        document.getElementById('mobileError').style.display = 'block';
+    } else {
+        document.getElementById('toggleButton').addEventListener('click', function() {
+            var elem = document.getElementById('myIframe');
+            if (document.fullscreenElement) {
+                document.exitFullscreen();
+            } else {
+                if (elem.requestFullscreen) {
+                    elem.requestFullscreen();
+                } else if (elem.mozRequestFullScreen) { /* Firefox */
+                    elem.mozRequestFullScreen();
+                } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+                    elem.webkitRequestFullscreen();
+                } else if (elem.msRequestFullscreen) { /* IE/Edge */
+                    elem.msRequestFullscreen();
+                }
+            }
+        });
+    }
+
+    // Prompt the user before leaving the page
+    window.onbeforeunload = function() {
+        return 'Leaving this page will end the stream session, any connected devices will be disconnected.';
+    };
+</script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .button {
+            display: block;
+            width: 200px;
+            height: 50px;
+            margin: 20px auto;
+            background-color: #ce2166;
+            color: white;
+            text-align: center;
+            border-radius: 10px;
+            line-height: 50px;
+            font-family: 'Arial', sans-serif;
+            font-size: 18px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        img {
+            width: 800px; /* Adjust as needed */
+        }
+    </style>
+</head>
+<body>
+    <img src="SaIL.png" alt="SaIL">
+    <div id="beginButton" class="button">Begin Stream</div>
+
+    <script>
+        document.getElementById('beginButton').addEventListener('click', function() {
+            // Generate a random 10 digit alphanumeric password
+            var password = Math.random().toString(36).slice(2, 12);
+            sessionStorage.setItem("password", password);
+            // Construct the iframe URL and QR code URL
+            var iframeUrl = 'vdo.html?scene&room=' + password;
+            var qrUrl = 'vdo.html?room=' + password + '&proaudio=1&audiogain=100&q&noheader&webcam';
+            var controlroom = 'mixer.html?room=' + password;
+            
+            // Redirect to the second page
+            window.location.href = 'viewer.html?iframeUrl=' + encodeURIComponent(iframeUrl) + '&qrUrl=' + encodeURIComponent(qrUrl) + '&controlroom=' + encodeURIComponent(controlroom);
+        });
+    </script>
+</body>
+</html>
