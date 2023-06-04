@@ -54,7 +54,7 @@
             const contIframe = document.getElementById('bottom-iframe');
             
             if (viewUrl) {
-                viewIframe.src = 'vdo.html?scene&room=' + viewUrl;
+                viewIframe.querySelector('iframe').src = 'vdo.html?scene&room=' + viewUrl;
                 contIframe.src = "mixer.html?room=" + viewUrl;
             }
             
