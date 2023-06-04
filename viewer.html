@@ -14,9 +14,12 @@
 
         #myIframe {
             
-            width: 80vw;
-            height: calc(80vw * 9 / 16); /* 16:9 aspect ratio */
-            
+            flex: 1;
+          max-height: 50%;
+          aspect-ratio: 16/9;
+          max-width: 100%;
+          margin: 0 auto;
+          overflow: auto;
         }
 
         .button {
