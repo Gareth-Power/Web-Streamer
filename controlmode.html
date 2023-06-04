@@ -32,11 +32,28 @@
 <body>
     <div id="container">
         <div class="iframe-wrapper">
-            <iframe src="https://example.com"></iframe>
+            <iframe src="" id="view-iframe"></iframe>
         </div>
         <div class="iframe-wrapper">
-            <iframe src="https://example.com"></iframe>
+            <iframe src="" id="cont-iframe"></iframe>
         </div>
     </div>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const viewUrl = params.get('room');
+            
+            const viewIframe = document.getElementById('view-iframe');
+            const contIframe = document.getElementById('cont-iframe');
+            
+            if (viewUrl) {
+                viewIframe.src = 'vdo.html?scene&room=' + viewUrl;
+                contIframe.src = "mixer.html?room=" + viewUrl;
+            }
+            
+           
+        });
+    </script>
 </body>
 </html>

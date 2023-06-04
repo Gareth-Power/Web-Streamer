@@ -45,7 +45,7 @@
             // Construct the iframe URL and QR code URL
             var iframeUrl = 'vdo.html?scene&room=' + password;
             var qrUrl = 'vdo.html?room=' + password + '&proaudio=1&audiogain=100&q&noheader&webcam';
-            var controlroom = 'mixer.html?room=' + password;
+            var controlroom = 'controlmode.html?room=' + password;
             
             // Redirect to the second page
             window.location.href = 'viewer.html?iframeUrl=' + encodeURIComponent(iframeUrl) + '&qrUrl=' + encodeURIComponent(qrUrl) + '&controlroom=' + encodeURIComponent(controlroom);
