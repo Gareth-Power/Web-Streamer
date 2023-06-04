@@ -24,6 +24,18 @@
         
         .iframe-wrapper iframe {
             border: none;
+            height: 100%;
+        }
+        
+        .top-iframe-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio (9 / 16 = 0.5625) */
+        }
+        
+        .top-iframe-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
         }
@@ -31,7 +43,7 @@
 </head>
 <body>
     <div id="container">
-        <div class="iframe-wrapper">
+        <div class="top-iframe-wrapper iframe-wrapper">
             <iframe src="" id="view-iframe" autoplay></iframe>
         </div>
         <div class="iframe-wrapper">
@@ -51,8 +63,6 @@
                 viewIframe.src = 'vdo.html?scene&room=' + viewUrl;
                 contIframe.src = "mixer.html?room=" + viewUrl;
             }
-            
-           
         });
     </script>
 </body>
