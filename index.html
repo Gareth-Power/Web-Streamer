@@ -43,9 +43,10 @@
             var password = Math.random().toString(36).slice(2, 12);
             sessionStorage.setItem("password", password);
             // Construct the iframe URL and QR code URL
+            var path = window.location.origin;
             var iframeUrl = 'vdo.html?scene&room=' + password;
-            var qrUrl = 'vdo.html?room=' + password + '&proaudio=1&audiogain=100&q&noheader&webcam';
-            var controlroom = 'controlmode.html?room=' + password;
+            var qrUrl = path + '/vdo.html?room=' + password + '&proaudio=1&audiogain=100&q&noheader&webcam';
+            var controlroom = path + '/controlmode.html?room=' + password;
             
             // Redirect to the second page
             window.location.href = 'viewer.html?iframeUrl=' + encodeURIComponent(iframeUrl) + '&qrUrl=' + encodeURIComponent(qrUrl) + '&controlroom=' + encodeURIComponent(controlroom);
